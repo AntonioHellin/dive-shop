@@ -1,65 +1,95 @@
-# diveShop
+# dive-shop
 
-Install DJANGO
+An e-commerce catalog and order management application for scuba diving equipment built with Python and Django. Features product search, customer order tracking, and inquiry contact mechanisms.
 
-Run CMD as Administrator
+## Features
 
->> pip install Django==X.X.X
+- **Product Search Engine**: Case-insensitive search for diving gear, accessories, and wear with query validation.
+- **Order & Client Management**: Database models and administration views for customer orders, shipping addresses, and inventory status.
+- **Contact & Inquiry System**: Dynamic contact forms utilizing Django's forms API with automated email dispatch.
+- **Database Flexibility**: Support for SQLite in local development and PostgreSQL in production via environment configuration.
+- **Defensive API**: Safe query retrieval preventing uncaught server exceptions on malformed requests.
 
-To check the version, go to the CMD
+## Prerequisites
 
->> python import django django.VERSION
+- **Python**: 3.8 or higher
+- **pip**: Latest package installer for Python
+- **PostgreSQL**: (Optional) For production relational storage; defaults to SQLite for local development.
 
-To create a project in Django, first go to DjangoProjects folder:
+## Installation & Setup
 
->> django-admin startproject "Name of the project"
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/AntonioHellin/diveShop.git
+   cd diveShop
+   ```
 
->> cd "Name of the project"
+2. **Create and activate a virtual environment**:
+   ```bash
+   # Windows (PowerShell)
+   python -m venv venv
+   .\venv\Scripts\Activate.ps1
 
->> manage.py help (for information)
+   # Linux / macOS
+   python3 -m venv venv
+   source venv/bin/activate
+   ```
 
->> python manage.py migrate
+3. **Install dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-To run the Python server:
+4. **Configure environment variables**:
+   Create a `.env` file from `.env.example`:
+   ```bash
+   # Windows
+   copy .env.example .env
 
->> python manage.py runserver
+   # Linux / macOS
+   cp .env.example .env
+   ```
 
-To create an app (BBDD)
+5. **Apply database migrations**:
+   ```bash
+   python manage.py migrate
+   ```
 
->> django-admin startproject "Name of the APP"
+6. **Create an administrative user (optional)**:
+   ```bash
+   python manage.py createsuperuser
+   ```
 
->> cd "Name of the project"
+## Usage
 
->> python manage.py startapp "name of the APP"
+Start the development server:
+```bash
+python manage.py runserver
+```
 
-To check if there is issue
+Open your browser at `http://127.0.0.1:8000` to interact with the catalog, or visit `http://127.0.0.1:8000/admin` to manage orders and articles.
 
->> python manage.py check "name of the APP"
+## Environment Variables
 
-To create the BBDD
+| Variable | Description | Default |
+| :--- | :--- | :--- |
+| `SECRET_KEY` | Django cryptographic signing key | Safe development fallback |
+| `DEBUG` | Enables or disables Django debug mode | `True` |
+| `ALLOWED_HOSTS` | Comma-separated allowed hostnames | `127.0.0.1,localhost` |
+| `DB_ENGINE` | Database backend engine | `django.db.backends.sqlite3` |
+| `DB_NAME` | Database name or SQLite file path | `db.sqlite3` |
+| `DB_USER` | Database username (for PostgreSQL) | Empty |
+| `DB_PASSWORD` | Database password (for PostgreSQL) | Empty |
+| `DB_HOST` | Database host | `127.0.0.1` |
+| `DB_PORT` | Database port | `5432` |
+| `EMAIL_BACKEND` | Django email backend | `django.core.mail.backends.console.EmailBackend` |
+| `EMAIL_HOST` | SMTP server address | `smtp.gmail.com` |
+| `EMAIL_PORT` | SMTP port | `587` |
+| `EMAIL_USE_TLS` | Enables TLS for email transmission | `True` |
+| `EMAIL_HOST_USER` | Email account username | Empty |
+| `EMAIL_HOST_PASSWORD` | Email account application password | Empty |
+| `CONTACT_RECIPIENT_EMAIL` | Destination email for contact messages | Empty |
 
->> python manage.py makemigrations
+## License
 
->> python manage.py sqlmigrate "Name of the APP" "Number of the migrations got it during makemigrations"
-
->> python manage.py migrate
-
-To manipulate the BBDD
-
->> python
-
->> from "nameofthemodel".models import Table1
-
->> obj1 = Table1(name='xxx', section='xxx', price=yyy)
-
->> obj1.save()
-
-To modify a value
-
->> obj1.price = yyy
-
->> obj1.save()
-
->> objX=Table1.objects.get(id=1)
-
->> objX.delete()
+This project is licensed under the [MIT License](LICENSE).
