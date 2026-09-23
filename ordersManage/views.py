@@ -32,13 +32,14 @@ def contact(request):
         myForm = ContactForm(request.POST)
         if myForm.is_valid():
             cleanFormData = myForm.cleaned_data
-            recipient = getattr(settings, 'CONTACT_RECIPIENT_EMAIL', settings.EMAIL_HOST_USER) or 'admin@example.com'
-            send_mail(
-                cleanFormData['subject'],
-                cleanFormData['email'],
-                cleanFormData.get('email', ''),
-                [recipient],
-            )
+            recipient = getattr(settings, 'CONTACT_RECIPIENT_EMAIL', '') or getattr(settings, 'EMAIL_HOST_USER', '')
+            if recipient:
+                send_mail(
+                    cleanFormData['subject'],
+                    cleanFormData['email'],
+                    cleanFormData.get('email', ''),
+                    [recipient],
+                )
             return render(request, "thanks.html")
     else:
         myForm = ContactForm()
