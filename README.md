@@ -20,8 +20,8 @@ An e-commerce catalog and order management application for scuba diving equipmen
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/AntonioHellin/diveShop.git
-   cd diveShop
+   git clone https://github.com/AntonioHellin/dive-shop.git
+   cd dive-shop
    ```
 
 2. **Create and activate a virtual environment**:
