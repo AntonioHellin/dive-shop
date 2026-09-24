@@ -89,7 +89,3 @@ Open your browser at `http://127.0.0.1:8000` to interact with the catalog, or vi
 | `EMAIL_HOST_USER` | Email account username | Empty |
 | `EMAIL_HOST_PASSWORD` | Email account application password | Empty |
 | `CONTACT_RECIPIENT_EMAIL` | Destination email for contact messages | Empty |
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
